@@ -6,7 +6,7 @@ print("CUDA Available:", torch.cuda.is_available())
 
 from datasets import load_dataset
 
-dataset = load_dataset("wikitext", "wikitext-103-v1", split="train[:1%]")
+dataset = load_dataset("cambridge-climb/BabyLM", trust_remote_code=True)
 print("Loaded Dataset:", dataset)
 
 from transformers import GPT2Tokenizer
