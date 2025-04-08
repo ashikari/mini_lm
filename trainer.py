@@ -1,6 +1,6 @@
 from data import get_train_dataloader
 from argparse import ArgumentParser, Namespace
-
+from torch.optim import Adam
 
 class Trainer:
     def __init__(self, batch_size: int, limit: int | None = None):
@@ -8,13 +8,20 @@ class Trainer:
         self.limit = limit
         self.train_dataloader = get_train_dataloader(self.batch_size)
 
+        # add optimizer
+        self.model = None # TODO: add model
+        self.optimizer = Adam(self.model.parameters(), lr=0.001)
+
     def train(self):
         for i, element in enumerate(self.train_dataloader):
-            print(element.keys())
-            print("Input IDs shape")
-            print(element["input_ids"].shape)
-            print(i, len(element["input_ids"]))
-            print(i, len(element["input_ids"][0]))
+            # TODO: add model inference
+            # TODO: add loss calculation
+            # loss = None
+
+            # update model parameters
+            self.optimizer.zero_grad()
+            # loss.backward()
+            self.optimizer.step()
 
             if self.limit and i == self.limit:
                 break
