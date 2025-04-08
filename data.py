@@ -4,7 +4,7 @@ from transformers import AutoTokenizer
 import torch
 from torch.utils.data import DataLoader
 
-
+# replace with tiktoken
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 
@@ -29,7 +29,11 @@ def collate_fn(batch):
     input_ids = torch.tensor([item["input_ids"] for item in batch])
     attention_mask = torch.tensor([item["attention_mask"] for item in batch])
 
-    return {"input_ids": input_ids, "attention_mask": attention_mask}
+    # non tensors stored for debugging purposes
+    text = [item["text"] for item in batch]
+    filename = [item["filename"] for item in batch]
+
+    return {"input_ids": input_ids, "attention_mask": attention_mask, "text": text, "filename": filename}
 
 
 def get_train_dataloader(

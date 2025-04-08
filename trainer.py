@@ -11,7 +11,6 @@ class Trainer:
     def train(self):
         for i, element in enumerate(self.train_dataloader):
             print(element.keys())
-            # print(i, element["text"])
             print("Input IDs shape")
             print(element["input_ids"].shape)
             print(i, len(element["input_ids"]))
